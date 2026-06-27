@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezzour Ismail — Cloud Data Platform Engineer</title>
+    <meta name="description" content="Freelance Cloud Data Platform Engineer specializing in Snowflake, dbt, Airflow, BigQuery, and MLOps.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2035;
+            --bg-card-hover: #1f2847;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --accent-secondary: #818cf8;
+            --border: #1e293b;
+            --gradient-1: linear-gradient(135deg, #38bdf8, #818cf8);
+            --gradient-2: linear-gradient(135deg, #818cf8, #c084fc);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 30px rgba(56, 189, 248, 0.1);
+            --radius: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 100px 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.06) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 64px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ─── ABOUT / SERVICES ─── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ─── EXPERIENCE TIMELINE ─── */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-secondary), var(--border));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 72px;
+            margin-bottom: 48px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 16px;
+            top: 8px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent);
+            z-index: 1;
+        }
+
+        .timeline-item.current .timeline-dot {
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .timeline-role {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .timeline-company {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        .timeline-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .category-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .category-toggle:hover,
+        .category-toggle.active {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .category-toggle i {
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+
+        .category-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .category-content.open {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 16px;
+        }
+
+        .category-content ul {
+            list-style: none;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .category-content li {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .category-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.6;
+        }
+
+        .timeline-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .timeline-summary ul {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .timeline-summary li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .timeline-summary li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-secondary);
+            opacity: 0.6;
+        }
+
+        /* ─── SKILLS ─── */
+        .skills-section {
+            background: var(--bg-secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .skill-group-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ─── CONTENT / ARTICLES ─── */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .content-card-icon {
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
+        }
+
+        .content-card-icon.youtube { color: #ff0000; }
+        .content-card-icon.medium { color: #fff; }
+        .content-card-icon.github { color: #fff; }
+
+        .content-card-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-card-type {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .content-card-body h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .content-card-body p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            flex: 1;
+        }
+
+        .content-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .content-card:hover .content-card-link {
+            gap: 10px;
+        }
+
+        .content-stats {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact-section {
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-info > p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item-value {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .contact-item-value a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item-value a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-socials a:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(10, 14, 26, 0.95);
+                backdrop-filter: blur(16px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 64px 16px;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .timeline::before {
+                left: 16px;
+            }
+
+            .timeline-item {
+                padding-left: 56px;
+            }
+
+            .timeline-dot {
+                left: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── NAVBAR ─── -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">MI</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Services</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#content">Content</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                Available for missions
+            </div>
+            <h1>
+                Mezzour Ismail<br>
+                <span class="gradient-text">Cloud Data Platform Engineer</span>
+            </h1>
+            <p class="hero-description">
+                Freelance engineer helping organizations design, build, and scale modern data platforms with Snowflake, dbt, Airflow, BigQuery, and beyond.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Get in Touch
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-briefcase"></i> View Services
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">7+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">80+</div>
+                    <div class="stat-label">Engineers Supported</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1200+</div>
+                    <div class="stat-label">Podcast Views</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ABOUT / SERVICES ─── -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">What I Do</span>
+                <h2 class="section-title">Services & Expertise</h2>
+                <p class="section-subtitle">I help teams build, audit, and scale their data platforms — from architecture design to hands-on implementation.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in fade-in-delay-1">
+                    <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Data Stack Design & Modernization</h3>
+                    <p>Designing or modernizing data stacks with Snowflake, dbt, Airflow, and BigQuery — from scratch or through migration projects.</p>
+                </div>
+                <div class="service-card fade-in fade-in-delay-2">
+                    <div class="service-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+                    <h3>Snowflake Audits</h3>
+                    <p>Running Snowflake audits covering performance, usage, cost optimization, and governance to ensure you get the most out of your investment.</p>
+                </div>
+                <div class="service-card fade-in fade-in-delay-3">
+                    <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>dbt & Airflow Adoption</h3>
+                    <p>Supporting teams in adopting and scaling dbt and Airflow through hands-on guidance, best practices, and upskilling programs.</p>
+                </div>
+                <div class="service-card fade-in fade-in-delay-1">
+                    <div class="service-icon"><i class="fas fa-robot"></i></div>
+                    <h3>MLOps</h3>
+                    <p>Defining patterns, industrializing ML workflows, setting up model registries, and implementing monitoring for production models.</p>
+                </div>
+                <div class="service-card fade-in fade-in-delay-2">
+                    <div class="service-icon"><i class="fas fa-cubes"></i></div>
+                    <h3>Semantic Layer Readiness</h3>
+                    <p>Preparing organizations for semantic layer adoption — assessing data quality, modeling, governance, and business alignment prerequisites.</p>
+                </div>
+                <div class="service-card fade-in fade-in-delay-3">
+                    <div class="service-icon"><i class="fas fa-arrows-spin"></i></div>
+                    <h3>Data Transformation & Migration</h3>
+                    <p>Leading data transformation and migration projects — moving workloads, re-architecting pipelines, and ensuring seamless transitions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ─── -->
+    <section id="experience" class="skills-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Career</span>
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">Building and scaling data platforms across industries.</p>
+            </div>
+            <div class="timeline">
+
+                <!-- Current Role -->
+                <div class="timeline-item current fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Cloud Data Platform Engineer</span>
+                        <span class="timeline-company">Accor</span>
+                        <span class="timeline-date">Feb 2023 — Present</span>
+                    </div>
+
+                    <div class="timeline-categories">
+                        <button class="category-toggle" data-target="cat-dbt">
+                            <i class="fas fa-chevron-down"></i> dbt & Airflow
+                        </button>
+                        <button class="category-toggle" data-target="cat-cicd">
+                            <i class="fas fa-chevron-down"></i> CI/CD
+                        </button>
+                        <button class="category-toggle" data-target="cat-snowflake">
+                            <i class="fas fa-chevron-down"></i> Snowflake
+                        </button>
+                        <button class="category-toggle" data-target="cat-quality">
+                            <i class="fas fa-chevron-down"></i> Data Quality
+                        </button>
+                        <button class="category-toggle" data-target="cat-mlops">
+                            <i class="fas fa-chevron-down"></i> MLOps
+                        </button>
+                        <button class="category-toggle" data-target="cat-aws">
+                            <i class="fas fa-chevron-down"></i> AWS
+                        </button>
+                        <button class="category-toggle" data-target="cat-collab">
+                            <i class="fas fa-chevron-down"></i> Collaboration
+                        </button>
+                    </div>
+
+                    <div class="category-content" id="cat-dbt">
+                        <ul>
+                            <li>Set up and drove the standardization of dbt across Accor's data ecosystem</li>
+                            <li>Set up and maintained Apache Airflow on Astronomer</li>
+                            <li>Built reusable Airflow templates to generate dbt DAGs</li>
+                            <li>Supported data teams with best practices on orchestration and scheduling</li>
+                            <li>Wrote onboarding documentation for dbt and Airflow</li>
+                            <li>Orchestrated Snowflake stored procedures and tasks</li>
+                            <li>Implemented monitoring DAGs for reliability</li>
+                        </ul>
+                    </div>
+                    <div class="category-content" id="cat-cicd">
+                        <ul>
+                            <li>Implemented GitLab CI/CD for dbt and Airflow deployments</li>
+                            <li>Set up multi-stage deployments (dev, pre-prod, prod)</li>
+                            <li>Designed tag-based configurations to route teams through CI/CD pipelines and reduce duplication</li>
+                            <li>Added unit tests and automated checks</li>
+                            <li>Reduced Astronomer deployment time from ~5 minutes to ~1 minute</li>
+                            <li>Configured pre-commit hooks and sqlfmt</li>
+                        </ul>
+                    </div>
+                    <div class="category-content" id="cat-snowflake">
+                        <ul>
+                            <li>Built FinOps dashboards to monitor and optimize warehouse costs</li>
+                            <li>Managed Snowflake infrastructure as code using Terraform</li>
+                            <li>Set up a pre-production environment for dbt testing</li>
+                            <li>Audited access and usage logs and built Snowsight dashboards</li>
+                            <li>Optimized warehouse sizing, auto-suspend, and workload isolation</li>
+                            <li>Defined role-based access models and governance</li>
+                            <li>Benchmarked semantic layer solutions</li>
+                        </ul>
+                    </div>
+                    <div class="category-content" id="cat-quality">
+                        <ul>
+                            <li>Implemented dbt tests for data integrity</li>
+                            <li>Set up Soda quality checks</li>
+                            <li>Benchmarked observability tools (Sifflet, Monte Carlo)</li>
+                            <li>Delivered POCs with Sifflet, Elementary, and Soda</li>
+                        </ul>
+                    </div>
+                    <div class="category-content" id="cat-mlops">
+                        <ul>
+                            <li>Delivered POCs for model registries (Snowflake, SageMaker, GitLab)</li>
+                            <li>Worked with data scientists to optimize ML workflows</li>
+                            <li>Introduced core data science concepts to the broader team</li>
+                            <li>Set up ML model monitoring in Snowflake</li>
+                        </ul>
+                    </div>
+                    <div class="category-content" id="cat-aws">
+                        <ul>
+                            <li>Managed AWS infrastructure as code using Terraform</li>
+                            <li>Built Terraform modules for scheduling and monitoring dbt</li>
+                            <li>Developed AWS Lambda functions to send data from Snowflake to Splunk</li>
+                        </ul>
+                    </div>
+                    <div class="category-content" id="cat-collab">
+                        <ul>
+                            <li>Interacted with business teams to understand their data needs</li>
+                            <li>Collaborated with Data Science and Data Analysis teams</li>
+                            <li>Conducted functional and technical POCs</li>
+                            <li>Technical framing to estimate project workloads</li>
+                            <li>Worked within the Scrum framework, animating daily scrums</li>
+                            <li>Set up sprint reports and planning summaries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Data Engineer -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Data Engineer</span>
+                        <span class="timeline-date">March 2021 — Feb 2023</span>
+                    </div>
+                    <div class="timeline-summary">
+                        <ul>
+                            <li>Developed and maintained ETL jobs with Python, Spark, SQL, dbt, and Airflow</li>
+                            <li>Built tools to improve data quality monitoring</li>
+                            <li>Optimization and profiling of Spark jobs</li>
+                            <li>Set up cloud functions to transform data</li>
+                            <li>Designed and maintained Google BigQuery warehouse</li>
+                            <li>Set up Microsoft Azure workbooks for pipeline metrics</li>
+                            <li>Worked on Microsoft Azure and Google Cloud platforms</li>
+                            <li>Set up POCs on data flow</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Data Analyst -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Data Analyst</span>
+                        <span class="timeline-date">March 2020 — October 2020</span>
+                    </div>
+                    <div class="timeline-summary">
+                        <ul>
+                            <li>Built real-time SAP Analytics Cloud dashboards with OData connectivity</li>
+                            <li>Engineered Python and SQL data pipelines and processing executables</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Data Scientist -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Data Scientist</span>
+                        <span class="timeline-date">June 2019 — September 2019</span>
+                    </div>
+                    <div class="timeline-summary">
+                        <ul>
+                            <li>Processed Logstash and Grafana data using Python pipelines</li>
+                            <li>Built time-series predictions and monitoring with LSTM, GRU, and ARIMA</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SKILLS ─── -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Tech Stack</span>
+                <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-group fade-in fade-in-delay-1">
+                    <div class="skill-group-title">Cloud Platforms</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Snowflake</span>
+                        <span class="skill-tag">Google Cloud (BigQuery)</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Terraform</span>
+                    </div>
+                </div>
+                <div class="skill-group fade-in fade-in-delay-2">
+                    <div class="skill-group-title">Data Engineering</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">dbt</span>
+                        <span class="skill-tag">Apache Airflow</span>
+                        <span class="skill-tag">Astronomer</span>
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">ETL</span>
+                    </div>
+                </div>
+                <div class="skill-group fade-in fade-in-delay-3">
+                    <div class="skill-group-title">Data Quality & Observability</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Soda</span>
+                        <span class="skill-tag">Sifflet</span>
+                        <span class="skill-tag">Elementary</span>
+                        <span class="skill-tag">Monte Carlo</span>
+                        <span class="skill-tag">dbt Tests</span>
+                    </div>
+                </div>
+                <div class="skill-group fade-in fade-in-delay-1">
+                    <div class="skill-group-title">MLOps & Data Science</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SageMaker</span>
+                        <span class="skill-tag">Snowflake ML</span>
+                        <span class="skill-tag">LSTM / GRU</span>
+                        <span class="skill-tag">ARIMA</span>
+                        <span class="skill-tag">Model Monitoring</span>
+                    </div>
+                </div>
+                <div class="skill-group fade-in fade-in-delay-2">
+                    <div class="skill-group-title">DevOps & CI/CD</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">AWS Lambda</span>
+                        <span class="skill-tag">Pre-commit</span>
+                        <span class="skill-tag">sqlfmt</span>
+                    </div>
+                </div>
+                <div class="skill-group fade-in fade-in-delay-3">
+                    <div class="skill-group-title">Visualization & Monitoring</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Snowsight</span>
+                        <span class="skill-tag">SAP Analytics Cloud</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">Azure Workbooks</span>
+                        <span class="skill-tag">Splunk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CONTENT & ARTICLES ─── -->
+    <section id="content" class="skills-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Sharing Knowledge</span>
+                <h2 class="section-title">Content & Articles</h2>
+                <p class="section-subtitle">Writing and speaking about data engineering, dbt, Airflow, and modern data platforms.</p>
+            </div>
+            <div class="content-grid">
+                <a href="#" class="content-card fade-in fade-in-delay-1" target="_blank" rel="noopener">
+                    <div class="content-card-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="content-card-body">
+                        <span class="content-card-type">Podcast</span>
+                        <h3>Data Platform Engineering Podcast</h3>
+                        <p>Discussing data engineering topics, best practices, and lessons learned from building data platforms at scale.</p>
+                        <span class="content-stats"><i class="fas fa-eye"></i> 1,200+ views</span>
+                        <span class="content-card-link">Watch on YouTube <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="https://medium.com/@mezzour.ismail07" class="content-card fade-in fade-in-delay-2" target="_blank" rel="noopener">
+                    <div class="content-card-icon medium">
+                        <i class="fab fa-medium"></i>
+                    </div>
+                    <div class="content-card-body">
+                        <span class="content-card-type">Article</span>
+                        <h3>How We Set Up dbt and Airflow at Accor</h3>
+                        <p>A deep dive into setting up dbt and Airflow for more than 80 data engineers — architecture decisions, scaling challenges, and lessons learned.</p>
+                        <span class="content-card-link">Read on Medium <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="https://medium.com/@mezzour.ismail07" class="content-card fade-in fade-in-delay-3" target="_blank" rel="noopener">
+                    <div class="content-card-icon medium">
+                        <i class="fab fa-medium"></i>
+                    </div>
+                    <div class="content-card-body">
+                        <span class="content-card-type">Article</span>
+                        <h3>How We Rethink Our Data Platform</h3>
+                        <p>Reflections on rethinking the data platform — from legacy patterns to modern, scalable architecture.</p>
+                        <span class="content-card-link">Read on Medium <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="https://github.com/MezzourIsmail" class="content-card fade-in fade-in-delay-1" target="_blank" rel="noopener">
+                    <div class="content-card-icon github">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="content-card-body">
+                        <span class="content-card-type">Open Source</span>
+                        <h3>GitHub Projects</h3>
+                        <p>Open-source projects, templates, and tools for data engineering workflows.</p>
+                        <span class="content-card-link">View on GitHub <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Looking for a data platform engineer for your next project? Let's talk.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out via email or phone. I'm based in Paris and available for remote and on-site missions across Europe.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-item-text">
+                                <span class="contact-item-label">Email</span>
+                                <span class="contact-item-value"><a href="mailto:mezzour.ismail07@gmail.com">mezzour.ismail07@gmail.com</a></span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-item-text">
+                                <span class="contact-item-label">Phone</span>
+                                <span class="contact-item-value"><a href="tel:+33660485882">+33 6 60 48 58 82</a></span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-location-dot"></i></div>
+                            <div class="contact-item-text">
+                                <span class="contact-item-label">Location</span>
+                                <span class="contact-item-value">Paris 16, France</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-calendar"></i></div>
+                            <div class="contact-item-text">
+                                <span class="contact-item-label">Date of Birth</span>
+                                <span class="contact-item-value">September 17, 1996</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in fade-in-delay-2">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm" action="mailto:mezzour.ismail07@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div class="footer-content">
+            <span class="footer-copy">&copy; 2025 Mezzour Ismail. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://github.com/MezzourIsmail" target="_blank" rel="noopener" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://medium.com/@mezzour.ismail07" target="_blank" rel="noopener" aria-label="Medium">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/mezzour-ismail" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Category toggles (experience section)
+        document.querySelectorAll('.category-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = document.getElementById(btn.dataset.target);
+                const isOpen = target.classList.contains('open');
+
+                // Close all
+                document.querySelectorAll('.category-content').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.category-toggle').forEach(b => b.classList.remove('active'));
+
+                // Open clicked if it was closed
+                if (!isOpen) {
+                    target.classList.add('open');
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll-triggered fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
