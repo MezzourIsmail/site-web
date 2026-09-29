@@ -103,7 +103,24 @@ h3{font-weight:500}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;border:1px solid transparent;border-radius:10px;font-family:var(--sans);font-size:.9375rem;font-weight:600;line-height:1.2;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
 .btn--primary{background:var(--glacier);color:var(--abyss)}
 .btn--quiet{border-color:var(--line-2);color:var(--ivory)}
-@media (max-width:519px){.hero__actions .btn{flex:1 1 0}}
+.hero__actions{align-items:center}
+.hero__social{display:flex;gap:10px}
+.social-btn{display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--line-2);border-radius:50%;color:var(--ivory);transition:color .2s,border-color .2s}
+.social-btn .icon{width:20px;height:20px}
+
+/* Featured articles strip */
+.featured{margin-top:clamp(48px,7vw,88px)}
+.featured__title{font-size:1.375rem;letter-spacing:-.01em}
+.featured__list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
+.feat__link{position:relative;display:flex;flex-direction:column;gap:10px;height:100%;padding:18px 44px 20px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(243,238,228,.03);transition:border-color .2s,background-color .2s}
+.feat__src{font-size:.8125rem;color:var(--ivory-3)}
+.feat__title{font-family:var(--serif);font-size:1.0625rem;line-height:1.3;color:var(--ivory)}
+.feat__go{position:absolute;top:18px;right:16px;width:16px;height:16px;color:var(--ivory-3);transition:color .2s,transform .2s}
+@media (max-width:1023px){
+  .featured__list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);scroll-padding-inline:var(--gutter)}
+  .featured__list::-webkit-scrollbar{display:none}
+  .feat{flex:0 0 min(78%,300px);scroll-snap-align:start}
+}
 
 /* Calling card: the one bold object on the page */
 .card{position:relative;isolation:isolate;overflow:hidden;justify-self:end;width:min(100%,360px);padding:14px 14px 22px;border-radius:24px;background:var(--card);color:var(--navy);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 48px 90px -40px rgba(0,0,0,.85),0 0 90px -30px rgba(77,181,255,.35);animation:defrost 1.2s var(--ease) .1s both}
@@ -118,7 +135,7 @@ h3{font-weight:500}
 @keyframes thaw{0%,25%{opacity:1}100%{opacity:0}}
 
 /* Key figures */
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(48px,7vw,88px);border-top:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(32px,4vw,48px);border-top:1px solid var(--line)}
 .fact{padding:24px 24px 0 0}
 .fact + .fact{padding-left:24px;border-left:1px solid var(--line)}
 .fact__num{display:block;font-family:var(--serif);font-size:clamp(2rem,1.6rem + 1.4vw,2.75rem);line-height:1;letter-spacing:-.02em;color:var(--ivory)}
@@ -131,7 +148,6 @@ h3{font-weight:500}
   .card__photo img{object-position:50% 10%}
   .card__meta{padding:0}
   .card__logo{width:148px;margin-bottom:6px}
-  .card__name{display:none}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fact{padding:20px 16px 20px 0}
   .fact + .fact{padding-left:0;border-left:0}
@@ -267,6 +283,9 @@ h3{font-weight:500}
   .post:hover .post__go{border-color:var(--glacier);color:var(--glacier);transform:translate(2px,-2px)}
   a.contact__item:hover .contact__value{color:var(--glacier)}
   .socials a:hover{border-color:var(--glacier);color:var(--glacier)}
+  .social-btn:hover{border-color:var(--glacier);color:var(--glacier)}
+  .feat__link:hover{border-color:var(--glacier);background:rgba(77,181,255,.06)}
+  .feat__link:hover .feat__go{color:var(--glacier);transform:translate(2px,-2px)}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -328,8 +347,12 @@ h3{font-weight:500}
         <p class="hero__role">Cloud data platform engineer based in Paris</p>
         <p class="hero__lead">I founded DataFrost Consulting to help organizations design, build, and scale modern data platforms with Snowflake, dbt, Airflow, BigQuery, and beyond.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#contact">Get in touch</a>
           <a class="btn btn--quiet" href="#services">View services</a>
+          <div class="hero__social" aria-label="Find me on">
+            <a class="social-btn" href="https://www.linkedin.com/in/ismail-mezzour" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-in"/></svg></a>
+            <a class="social-btn" href="https://medium.com/@mezzour.ismail07" target="_blank" rel="noopener" aria-label="Medium"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-md"/></svg></a>
+            <a class="social-btn" href="https://www.youtube.com/watch?v=dlHj0hQxmCI" target="_blank" rel="noopener" aria-label="YouTube podcast"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-yt"/></svg></a>
+          </div>
         </div>
       </div>
       <figure class="card">
@@ -341,8 +364,17 @@ h3{font-weight:500}
         </figcaption>
       </figure>
     </div>
+    <section class="featured" aria-labelledby="featured-title">
+      <h2 class="featured__title" id="featured-title">Featured articles</h2>
+      <ul class="featured__list">
+        <li class="feat"><a class="feat__link" href="https://medium.com/accor-digital-and-tech/the-dbt-airflow-effect-enhanced-data-deployments-at-accor-356e85299887" target="_blank" rel="noopener"><span class="feat__src">Medium, Accor Digital &amp; Tech</span><span class="feat__title">The dbt + Airflow Effect: Enhanced Data Deployments at Accor</span><svg class="icon feat__go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></li>
+        <li class="feat"><a class="feat__link" href="https://medium.com/accor-digital-and-tech/deploying-airflow-at-accor-for-80-data-engineers-scientists-our-lessons-learned-with-9de40d944cd1" target="_blank" rel="noopener"><span class="feat__src">Medium, Accor Digital &amp; Tech</span><span class="feat__title">Deploying Airflow at Accor for 80+ Data Engineers &amp; Scientists</span><svg class="icon feat__go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></li>
+        <li class="feat"><a class="feat__link" href="https://medium.com/snowflake-explained/building-a-semantic-layer-in-snowflake-with-terraform-and-cortex-f7b0ff6d2335" target="_blank" rel="noopener"><span class="feat__src">Medium, Snowflake Explained</span><span class="feat__title">Building a Semantic Layer in Snowflake with Terraform and Cortex</span><svg class="icon feat__go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></li>
+        <li class="feat"><a class="feat__link" href="https://medium.com/@mezzour.ismail07/how-we-turned-data-teams-into-a-streamlit-factory-11e8d7165445" target="_blank" rel="noopener"><span class="feat__src">Medium</span><span class="feat__title">How We Turned Data Teams Into a Streamlit Factory</span><svg class="icon feat__go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </section>
     <ul class="facts" aria-label="Key figures">
-      <li class="fact"><span class="fact__num">6+</span><span class="fact__label">years of experience</span></li>
+      <li class="fact"><span class="fact__num">7+</span><span class="fact__label">years of experience</span></li>
       <li class="fact"><span class="fact__num">100+</span><span class="fact__label">engineers supported</span></li>
       <li class="fact"><span class="fact__num">2,700+</span><span class="fact__label">podcast views</span></li>
       <li class="fact"><span class="fact__num">300+</span><span class="fact__label">monthly Medium readers</span></li>
